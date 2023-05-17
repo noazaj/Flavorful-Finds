@@ -1,0 +1,24 @@
+{
+  "name": "flavorful-finds",
+  "version": "1.0.0",
+  "description": "A web app created for a recipe database",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Zajicek1/Flavorful-Finds.git"
+  },
+  "author": "zajicekn",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Zajicek1/Flavorful-Finds/issues"
+  },
+  "homepage": "https://github.com/Zajicek1/Flavorful-Finds#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "forever": "^4.0.3",
+    "sql": "^0.78.0"
+  }
+}
