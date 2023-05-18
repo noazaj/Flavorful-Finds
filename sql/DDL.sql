@@ -81,6 +81,7 @@ CREATE TABLE Recipe_has_Ingredients (
     recipeIngredientID  int UNIQUE NOT NULL AUTO_INCREMENT,
     recipeID            int,
     ingredientID        int,
+    quantity            float NOT NULL,
     PRIMARY KEY (recipeIngredientID),
     FOREIGN KEY (recipeID) REFERENCES Recipes(recipeID) ON UPDATE CASCADE ON DELETE SET NULL,
     FOREIGN KEY (ingredientID) REFERENCES Ingredients(ingredientID) ON UPDATE CASCADE ON DELETE SET NULL
@@ -152,13 +153,11 @@ INSERT INTO Recipe_has_Equipment (recipeID, equipmentID) VALUES
     (5, 1), (5, 4), (5, 5); 
 
 -- Insert sample data into second intersection table
-INSERT INTO Recipe_has_Ingredients (recipeID, ingredientID) VALUES
-    (1, 1), (1, 2), (1, 3), (1, 4), (1, 5), -- Spaghetti with meat sauce requires Spaghetti, Ground Beef, Tomato, Onion, and Garlic
-    (2, 6), (2, 7), (2, 8), (2, 9),         
-    (3, 10), (3, 11), (3, 12),              
-    (4, 13), (4, 14), (4, 15), (4, 16),     
-    (5, 17), (5, 18), (5, 12), (5, 19);     
+INSERT INTO Recipe_has_Ingredients (recipeID, ingredientID, quantity) VALUES
+    (1, 1, 200), (1, 2, 500), (1, 3, 150), (1, 4, 100), (1, 5, 50), -- Spaghetti with meat sauce requires Spaghetti, Ground Beef, Tomato, Onion, and Garlic
+    (2, 6, 400), (2, 7, 200), (2, 8, 100), (2, 9, 50),         
+    (3, 10, 200), (3, 11, 100), (3, 12, 50),              
+    (4, 13, 500), (4, 14, 300), (4, 15, 200), (4, 16, 100),     
+    (5, 17, 300), (5, 18, 250), (5, 12, 50), (5, 19, 100);    
 
 COMMIT;
-
-
