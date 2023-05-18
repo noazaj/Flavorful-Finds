@@ -134,3 +134,27 @@ WHERE recipeID = :recipeIdInput AND ingredientID = :ingredientIdInput;
 -- Delete a recipe-ingredient relation
 DELETE FROM Recipe_has_Ingredients 
 WHERE recipeID = :recipeIdInput AND ingredientID = :ingredientIdInput;
+
+/* 
+    Search
+*/
+
+-- Search recipes by title
+SELECT * FROM Recipes WHERE title LIKE :searchInput;
+
+-- Search recipes by prep time (less than a given value)
+SELECT * FROM Recipes WHERE prep_time <= :searchInput;
+
+-- Search recipes by user
+SELECT * FROM Recipes INNER JOIN Users ON Recipes.userID = Users.userID WHERE Users.username LIKE :searchInput;
+
+-- Search recipes by ingredients
+SELECT * FROM Recipes INNER JOIN Recipe_has_Ingredients ON Recipes.recipeID = Recipe_has_Ingredients.recipeID 
+INNER JOIN Ingredients ON Recipe_has_Ingredients.ingredientID = Ingredients.ingredientID 
+WHERE Ingredients.name LIKE :searchInput;
+
+-- Search equipment by name
+SELECT * FROM Equipment WHERE name LIKE :searchInput;
+
+-- Search ingredients by name or category
+SELECT * FROM Ingredients WHERE name LIKE :searchInput OR category LIKE :searchInput;
