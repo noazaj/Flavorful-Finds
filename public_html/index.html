@@ -38,8 +38,21 @@
         users that submitted these for you to enjoy!
       </p>
     </div>
+    <!-- Search bar -->
+    <div class="search-bar">
+      <input type="text" id="universal-input" oninput="handleInput()" placeholder="Search...">
+      <select id="search-category" onchange="handleInput()">
+        <option value="all">All</option>
+        <option value="title">By Title</option>
+        <option value="user">By User</option>
+        <option value="ingredients">By Ingredients</option>
+        <option value="equipment">By Equipment</option>
+        <option value="prep_time">By Prep Time</option>
+        <option value="rating">By Rating</option>
+      </select>
+      <button onclick="handleInput()">Search</button>
+    </div>
+    
     <img src="spices.jpg" alt="Image of spices" class="image-style">
   </body>
 </html>
-
-

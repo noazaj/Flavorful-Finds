@@ -18,7 +18,8 @@
   "homepage": "https://github.com/Zajicek1/Flavorful-Finds#readme",
   "dependencies": {
     "express": "^4.18.2",
-    "forever": "^4.0.3",
+    "forever": "^0.14.2",
+    "handlebars": "^4.7.7",
     "mysql": "^2.18.1"
   }
 }
