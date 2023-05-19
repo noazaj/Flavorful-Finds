@@ -9,11 +9,13 @@ PORT        = 7070;                 // Set a port number at the top so it's easy
 /*
     Handlebars
 */
-// Require the express-handlebars module
+// Require the express-handlebars module and 
+// set the view engine to Handlebars
 var exphbs = require('express-handlebars');
-
-// Set the view engine to Handlebars
-app.engine('handlebars', exphbs());
+const { query } = require('express');
+app.engine('.hbs', exphbs({
+    extname: '.hbs'
+}));
 app.set('view engine', 'handlebars');
 
 /*
