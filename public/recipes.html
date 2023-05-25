@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Your ultimate destination for finding and sharing delicious recipes.">
+    <meta name="keywords" content="recipes, cooking, food, flavor">
+    <meta name="author" content="Noah Zajicek">
+    <meta name="robots" content="noindex, nofollow, noarchive">
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <title>Flavorful Finds - Recipes</title>
+  </head>
+  <body>
+    <header>
+      <h1>Flavorful Finds - Recipes</h1>
+      <nav class="navpages">
+        <div class="dropdown">
+          <button class="dropbtn">
+            <div class="hamburger"></div>
+            <div class="hamburger"></div>
+            <div class="hamburger"></div>
+          </button>
+          <div class="dropdown-content">
+            <a href="index.html">Home</a>
+						<a href="ingredients.html">Ingredients</a>
+						<a href="equipment.html">Equipment</a>
+          	<a href="users.html">Users</a>
+            <a href="ratings.html">Ratings</a>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <section id="browse-recipes">
+      <h2>Browse Recipes</h2>
+      <!-- Recipe list table goes here -->
+      <table>
+        <thead>
+          <tr>
+            <th>Recipe ID</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Dietary Restrictions</th>
+            <th>Instructions</th>
+            <th>Prep Time</th>
+            <th>Cook Time</th>
+            <th>Serving(s)</th>
+            <th>User ID</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Spaghetti with Meat sauce</td>
+            <td>Classic spaghetti with spicy meat sauce</td>
+            <td>NULL</td>
+            <td>Cook the spaghetti according to package instructions...</td>
+            <td>15 min.</td>
+            <td>30 min.</td>
+            <td>4</td>
+            <td>1</td>
+            <td><button class="del-button">Delete</button></td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Homemade Ramen</td>
+            <td>Tasty, homemade ramen with a thai twist!</td>
+            <td>Gluten-free</td>
+            <td>Start by getting gluten-free flour...</td>
+            <td>20 min.</td>
+            <td>20 min.</td>
+            <td>4</td>
+            <td>2</td>
+            <td><button class="del-button">Delete</button></td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Grilled Cheese Sandwich</td>
+            <td>Simple and quick grilled cheese sandwich</td>
+            <td>NULL</td>
+            <td>Butter one side of each bread slice...</td>
+            <td>5 min.</td>
+            <td>10 min.</td>
+            <td>1</td>
+            <td>3</td>
+            <td><button class="del-button">Delete</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="add-recipe">
+      <h2>Add a New Recipe</h2>
+      <form>
+        <fieldset>
+          <label for="recipe-title">Title</label>
+          <input type="text" id="recipe-title" name="title">
+          <label for="recipe-description">Description</label>
+          <textarea id="recipe-description" name="description"></textarea>
+    
+          <!-- Additional fields for recipe details -->
+          <label for="recipe-dietary">Dietary Restrictions</label>
+          <input type="text" id="recipe-dietary" name="dietary">
+    
+          <label for="recipe-instructions">Instructions</label>
+          <textarea id="recipe-instructions" name="instructions"></textarea>
+    
+          <label for="recipe-preptime">Prep Time</label>
+          <input type="text" id="recipe-preptime" name="preptime">
+    
+          <label for="recipe-cooktime">Cook Time</label>
+          <input type="text" id="recipe-cooktime" name="cooktime">
+    
+          <label for="recipe-servings">Serving(s)</label>
+          <input type="number" id="recipe-servings" name="servings">
+    
+          <label for="user-id">User ID</label>
+          <input type="text" id="user-id" name="userid">
+        </fieldset>
+        <button type="submit">Save</button>
+        <button type="button">Cancel</button>
+      </form>
+    </section>
+
+    <section id="update-recipe">
+      <h2>Update Recipe</h2>
+      <form>
+        <fieldset>
+          <label for="recipe-title">Title</label>
+          <input type="text" id="recipe-title" name="title">
+          <label for="recipe-description">Description</label>
+          <textarea id="recipe-description" name="description"></textarea>
+    
+          <!-- Additional fields for recipe details -->
+          <label for="recipe-dietary">Dietary Restrictions</label>
+          <input type="text" id="recipe-dietary" name="dietary">
+    
+          <label for="recipe-instructions">Instructions</label>
+          <textarea id="recipe-instructions" name="instructions"></textarea>
+    
+          <label for="recipe-preptime">Prep Time</label>
+          <input type="text" id="recipe-preptime" name="preptime">
+    
+          <label for="recipe-cooktime">Cook Time</label>
+          <input type="text" id="recipe-cooktime" name="cooktime">
+    
+          <label for="recipe-servings">Serving(s)</label>
+          <input type="number" id="recipe-servings" name="servings">
+    
+          <label for="user-id">User ID</label>
+          <input type="text" id="user-id" name="userid">
+    
+        </fieldset>
+        <button type="submit">Save</button>
+        <button type="button">Cancel</button>
+      </form>
+    </section>
+    
+  </body>
+</html>

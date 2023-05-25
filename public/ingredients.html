@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Your ultimate destination for finding and sharing delicious recipes.">
+  <meta name="keywords" content="recipes, cooking, food, flavor">
+  <meta name="author" content="Noah Zajicek">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <title>Flavorful Finds - Ingredients</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Flavorful Finds - Ingredients</h1>
+    <nav class="navpages">
+      <div class="dropdown">
+        <button class="dropbtn">
+          <div class="hamburger"></div>
+          <div class="hamburger"></div>
+          <div class="hamburger"></div>
+        </button>
+        <div class="dropdown-content">
+          <a href="index.html">Home</a>
+          <a href="recipes.html">Recipes</a>
+          <a href="equipment.html">Equipment</a>
+          <a href="users.html">Users</a>
+          <a href="ratings.html">Ratings</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <section id="browse-ingredients">
+    <h2>Browse Ingredients</h2>
+    <!-- Ingredients list table goes here -->
+    <table>
+      <thead>
+        <tr>
+          <th>Ingredient ID</th>
+          <th>Name</th>
+          <th>Category</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Spaghetti</td>
+          <td>Pasta</td>
+          <td><button class="del-button">Delete</button></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Ground Beef</td>
+          <td>Meat</td>
+          <td><button class="del-button">Delete</button></td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Tomato</td>
+          <td>Vegetable</td>
+          <td><button class="del-button">Delete</button></td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Onion</td>
+          <td>Vegetable</td>
+          <td><button class="del-button">Delete</button></td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>Garlic</td>
+          <td>Vegetable</td>
+          <td><button class="del-button">Delete</button></td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>Noodles</td>
+          <td>Pasta</td>
+          <td><button class="del-button">Delete</button></td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td>Bell Pepper</td>
+          <td>Vegetable</td>
+          <td><button class="del-button">Delete</button></td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td>Soy Sauce</td>
+          <td>Condiment</td>
+          <td><button class="del-button">Delete</button></td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td>Vegetable Oil</td>
+          <td>Oil</td>
+          <td><button class="del-button">Delete</button></td>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td>Bread</td>
+          <td>Bakery</td>
+          <td><button class="del-button">Delete</button></td>
+        </tr>
+        <tr>
+          <td>11</td>
+          <td>Cheese</td>
+          <td>Dairy</td>
+          <td><button class="del-button">Delete</button></td>
+        </tr>
+        <tr>
+          <td>12</td>
+          <td>Butter</td>
+          <td>Dairy</td>
+          <td><button class="del-button">Delete</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="add-ingredient">
+    <h2>Add a New Ingredient</h2>
+    <form>
+      <fieldset>
+        <label for="ingredient-name">Name</label>
+        <input type="text" id="ingredient-name" name="name">
+        <label for="ingredient-category">Category</label>
+        <input type="text" id="ingredient-category" name="category">
+        <!-- Additional fields for ingredient details -->
+      </fieldset>
+      <button type="submit">Save</button>
+      <button type="button">Cancel</button>
+    </form>
+  </section>
+
+  <section id="update-ingredient">
+    <h2>Update Ingredient</h2>
+    <form>
+      <fieldset>
+        <label for="ingredient-name">Name</label>
+        <input type="text" id="ingredient-name" name="name">
+        <label for="ingredient-category">Category</label>
+        <input type="text" id="ingredient-category" name="category">
+        <!-- Additional fields for ingredient details -->
+      </fieldset>
+      <button type="submit">Save</button>
+      <button type="button">Cancel</button>
+    </form>
+  </section>
+</body>
+</html>
