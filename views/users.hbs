@@ -46,10 +46,10 @@
         <tbody>
           {{#each users}}
           <tr>
-            <td>{{userID}}</td>
-            <td>{{username}}</td>
-            <td>{{email}}</td>
-            <td>{{password}}</td>
+            <td>{{this.userID}}</td>
+            <td>{{this.username}}</td>
+            <td>{{this.email}}</td>
+            <td>{{this.password}}</td>
             <td>
               <button class="edit-button">Edit</button>
               <button class="del-button">Delete</button>
