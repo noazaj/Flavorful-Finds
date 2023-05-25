@@ -16,10 +16,6 @@ app.set('view engine', 'hbs');
 // BODY PARSING MIDDLEWARE
 app.use(bodyParser.urlencoded({extended: false}));
 
-// DATABASE
-// MySQL database connection
-const db = require('./db-connector.js')
-
 // Use routes
 app.use('/', indexRoutes);
 app.use('/users', userRoutes);
