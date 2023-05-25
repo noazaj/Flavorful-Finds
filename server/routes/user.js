@@ -8,7 +8,4 @@ const userController = require('../controllers/userController');
 // GET request for read all users
 router.get('/', userController.read)
 
-// GET request to return back to home page
-router.get('/', )
-
 module.exports = router;
