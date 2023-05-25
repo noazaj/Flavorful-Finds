@@ -1,14 +1,15 @@
 // Get an instance of mysql we can use in the app
-var mysql = require('mysql')
+const mysql = require('mysql')
+require('dotenv').config();
 
 // Create a 'connection pool' using the provided credentials
-var pool = mysql.createPool({
+const pool = mysql.createPool({
     connectionLimit : 10,
-    host            : 'classmysql.engr.oregonstate.edu',
-    user            : 'cs340_zajicekn',
-    password        : '9779',
-    database        : 'cs340_zajicekn'
-})
+    host            : process.env.DB_HOST,
+    user            : process.env.DB_USER,
+    password        : process.env.DB_PASSWORD,
+    database        : process.env.DB
+});
 
 // Export it for use in our application
 module.exports.pool = pool;

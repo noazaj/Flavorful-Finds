@@ -21,11 +21,11 @@
             <div class="hamburger"></div>
           </button>
           <div class="dropdown-content">
-            <a href="index.html">Home</a>
-            <a href="recipes.html">Recipes</a>
-            <a href="ingredients.html">Ingredients</a>
-						<a href="equipment.html">Equipment</a>
-            <a href="ratings.html">Ratings</a>
+            <a href="/">Home</a>
+            <a href="/recipes">Recipes</a>
+            <a href="/ingredients">Ingredients</a>
+						<a href="/equipment">Equipment</a>
+            <a href="/ratings">Ratings</a>
           </div>
         </div>
       </nav>
@@ -46,11 +46,14 @@
         <tbody>
           {{#each users}}
           <tr>
-            <td>{{id}}</td>
+            <td>{{userID}}</td>
             <td>{{username}}</td>
             <td>{{email}}</td>
             <td>{{password}}</td>
-            <td><button class="del-button">Delete</button></td>
+            <td>
+              <button class="edit-button">Edit</button>
+              <button class="del-button">Delete</button>
+            </td>
           </tr>
           {{/each}}
         </tbody>
