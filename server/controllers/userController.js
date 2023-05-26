@@ -87,7 +87,7 @@ exports.create = (req, res) => {
 
 
 exports.update = (req, res) => {
-    const { id, username, email, password } = req.body; // example fields
+    const { id, username, email, password } = req.body; 
 
     db.getConnection((err, connection) => {
         if (err) {
@@ -109,11 +109,9 @@ exports.update = (req, res) => {
     });
 };
 
-
-
 // DELETE User
 exports.delete = (req, res) => {
-    const { userID } = req.body; // example fields
+    const { id } = req.body; 
 
     db.getConnection((err, connection) => {
         if (err) {
@@ -122,7 +120,7 @@ exports.delete = (req, res) => {
             return;
         }
 
-        connection.query('DELETE FROM Users WHERE id = ?', [userID], (err, results) => {
+        connection.query('DELETE FROM Users WHERE userID = ?', [id], (err, results) => {
             connection.release();
 
             if (err) {
@@ -134,4 +132,3 @@ exports.delete = (req, res) => {
         });
     });
 };
-

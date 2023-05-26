@@ -18,6 +18,6 @@ router.post('/create', userController.create);
 router.post('/update', userController.update);
 
 // DELETE request to delete user
-router.delete('/delete', userController.delete);
+router.post('/delete', userController.delete);
 
 module.exports = router;

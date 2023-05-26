@@ -5,6 +5,7 @@ var addUserBtn = document.getElementById("add-user-button");
 var cancelAddUserBtn = document.getElementById("cancel-button");
 var cancelUpdateUserBtn = document.getElementById("cancel-update-button");
 var editButtons = document.getElementsByClassName("edit-button");
+var deleteButtons = document.getElementsByClassName("del-button");
 
 // When the user clicks the "Add User" button, open the add user modal
 addUserBtn.onclick = () => {
@@ -34,6 +35,14 @@ for (var i = 0; i < editButtons.length; i++) {
   editButtons[i].addEventListener("click", function () {
     var userId = this.getAttribute("data-userid");
     openUpdateUserModal(userId);
+  });
+}
+
+// Loop through the delete buttons and add a click event listener to each
+for (var i = 0; i < deleteButtons.length; i++) {
+  deleteButtons[i].addEventListener("click", function () {
+    var userId = this.getAttribute("data-userid");
+    deleteUser(userId);
   });
 }
 
