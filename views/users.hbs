@@ -1,68 +1,77 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Your ultimate destination for finding and sharing delicious recipes.">
-    <meta name="keywords" content="recipes, cooking, food, flavor">
-    <meta name="author" content="Noah Zajicek">
-    <meta name="robots" content="noindex, nofollow, noarchive">
-    <link rel="stylesheet" type="text/css" href="style.css" />
-    <title>Flavorful Finds - Users</title>
-  </head>
-  <body>
-    <header>
-      <h1>Flavorful Finds - Users</h1>
-      <nav class="navpages">
-        <div class="dropdown">
-          <button class="dropbtn">
-            <div class="hamburger"></div>
-            <div class="hamburger"></div>
-            <div class="hamburger"></div>
-          </button>
-          <div class="dropdown-content">
-            <a href="/">Home</a>
-            <a href="/recipes">Recipes</a>
-            <a href="/ingredients">Ingredients</a>
-						<a href="/equipment">Equipment</a>
-            <a href="/ratings">Ratings</a>
-          </div>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Your ultimate destination for finding and sharing delicious recipes.">
+  <meta name="keywords" content="recipes, cooking, food, flavor">
+  <meta name="author" content="Noah Zajicek">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <link rel="stylesheet" type="text/css" href="style.css" />
+  <title>Flavorful Finds - Users</title>
+</head>
+
+<body>
+  <header>
+    <h1>Flavorful Finds - Users</h1>
+    <nav class="navpages">
+      <div class="dropdown">
+        <button class="dropbtn">
+          <div class="hamburger"></div>
+          <div class="hamburger"></div>
+          <div class="hamburger"></div>
+        </button>
+        <div class="dropdown-content">
+          <a href="/">Home</a>
+          <a href="/recipes">Recipes</a>
+          <a href="/ingredients">Ingredients</a>
+          <a href="/equipment">Equipment</a>
+          <a href="/ratings">Ratings</a>
         </div>
-      </nav>
-    </header>
-
-    <section id="browse-users">
+      </div>
+    </nav>
+  </header>
+  <section id="browse-users">
+    <div class="browse-header">
       <h2>Browse Users</h2>
-      <!-- User list table goes here -->
-      <table>
-        <thead>
-          <tr>
-            <th>User ID</th>
-            <th>Username</th>
-            <th>Email</th>
-            <th>Password</th>
-          </tr>
-        </thead>
-        <tbody>
-          {{#each users}}
-          <tr>
-            <td>{{this.userID}}</td>
-            <td>{{this.username}}</td>
-            <td>{{this.email}}</td>
-            <td>{{this.password}}</td>
-            <td>
-              <button class="edit-button">Edit</button>
-              <button class="del-button">Delete</button>
-            </td>
-          </tr>
-          {{/each}}
-        </tbody>
-      </table>
-    </section>
-
+      <button id="add-user-button">+ Add User</button>
+    </div>
+    <!-- Search form -->
+    <form action="/users/search" method="GET">
+      <input type="search" name="q" placeholder="Search for users...">
+      <input type="submit" value="Search">
+    </form>
+    <!-- User list table goes here -->
+    <table>
+      <thead>
+        <tr>
+          <th>User ID</th>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Password</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each users}}
+        <tr>
+          <td>{{this.userID}}</td>
+          <td id="username-{{this.userID}}">{{this.username}}</td>
+          <td id="email-{{this.userID}}">{{this.email}}</td>
+          <td id="password-{{this.userID}}">{{this.password}}</td>
+          <td>
+            <button class="edit-button" data-userid="{{this.userID}}">Edit</button>
+            <button class="del-button" data-userid="{{this.userID}}">Delete</button>
+          </td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </section>
+  <div id="add-user-model" style="display: none;">
     <section id="add-user">
       <h2>Add a New User</h2>
-      <form>
+      <form action="/users/create" method="POST">
         <fieldset>
           <label for="user-username">Username</label>
           <input type="text" id="user-username" name="username">
@@ -73,25 +82,30 @@
           <!-- Additional fields for user details -->
         </fieldset>
         <button type="submit">Save</button>
-        <button type="button">Cancel</button>
+        <button type="button" id="cancel-button">Cancel</button>
       </form>
     </section>
-
+  </div>
+  <div id="update-user-model" style="display: none;">
     <section id="update-user">
       <h2>Update User</h2>
-      <form>
+      <form action="/users/update" method="POST">
         <fieldset>
-          <label for="user-username">Username</label>
-          <input type="text" id="user-username" name="username">
-          <label for="user-email">Email</label>
-          <input type="email" id="user-email" name="email">
-          <label for="user-password">Password</label>
-          <input type="password" id="user-password" name="password">
+          <input type="hidden" id="update-user-id" name="id">
+          <label for="update-user-username">Username</label>
+          <input type="text" id="update-user-username" name="username">
+          <label for="update-user-email">Email</label>
+          <input type="email" id="update-user-email" name="email">
+          <label for="update-user-password">Password</label>
+          <input type="password" id="update-user-password" name="password">
           <!-- Additional fields for user details -->
         </fieldset>
         <button type="submit">Save</button>
-        <button type="button">Cancel</button>
+        <button type="button" id="cancel-update-button">Cancel</button>
       </form>
     </section>
-  </body>
+  </div>
+  <script src="/src/scripts.js"></script>
+</body>
+
 </html>

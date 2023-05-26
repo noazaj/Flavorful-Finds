@@ -154,5 +154,26 @@ th {
   #search-input {
     flex-grow: 2;  /* it will take up twice as much width as the select dropdown */
   }
+
+  .browse-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;  /* Adjust as needed */
+  }
   
+  #add-user-button {
+    background-color: #2a6592; /* You can choose your preferred color */
+    color: white;
+    border: none;
+    border-radius: 15px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition-duration: 0.4s;
+  }
   
+  #add-user-button:hover {
+    background-color: white; 
+    color: black;
+  }

@@ -16,9 +16,14 @@ app.set('view engine', 'hbs');
 // BODY PARSING MIDDLEWARE
 app.use(bodyParser.urlencoded({extended: false}));
 
-// Use routes
+// Use for page navigation, searchs, and submissions
 app.use('/', indexRoutes);
 app.use('/users', userRoutes);
+app.use('/users/search', userRoutes);
+app.use('/users/create', userRoutes);
+app.use('/users/update', userRoutes);
+app.use('/users/delete', userRoutes);
+
 
 // Use static files if not found in routes
 app.use(express.static('public'));
