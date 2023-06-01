@@ -1,85 +1,147 @@
 // Get the modal and buttons
-var addUserModal = document.getElementById("add-user-model");
-var updateUserModal = document.getElementById("update-user-model");
-var addUserBtn = document.getElementById("add-user-button");
-var cancelAddUserBtn = document.getElementById("cancel-button");
-var cancelUpdateUserBtn = document.getElementById("cancel-update-button");
-var editButtons = document.getElementsByClassName("edit-button");
-var deleteButtons = document.getElementsByClassName("del-button");
+var addIngredientModal = document.getElementById("add-ingredient-model");
+var addIngredientBtn = document.getElementById("add-ingredient-button");
+var cancelAddIngredientBtn = document.getElementById("cancel-button");
+var ingredientForm = document.getElementById("add-ingredient-form");
+var ingredientNameInput = document.getElementById("ingredient-name");
+var ingredientCategoryInput = document.getElementById("ingredient-category");
 
-// When the user clicks the "Add User" button, open the add user modal
-addUserBtn.onclick = () => {
-  addUserModal.style.display = "block";
+// When the user clicks the "Add Ingredient" button, open the add ingredient modal
+addIngredientBtn.onclick = () => {
+    addIngredientModal.style.display = "block";
 };
 
-// When the user clicks on the "Cancel" button in the add user modal, close the modal
-cancelAddUserBtn.onclick = function () {
-  addUserModal.style.display = "none";
+// When the user clicks on the "Cancel" button in the add ingredient modal, close the modal
+cancelAddIngredientBtn.onclick = function () {
+    addIngredientModal.style.display = "none";
 };
 
-// When the user clicks on the "Cancel" button in the update user modal, close the modal
-cancelUpdateUserBtn.onclick = function () {
-  updateUserModal.style.display = "none";
-};
+// Handle form submission for creating an ingredient
+const addIngredientForm = document.getElementById('add-ingredient-form');
 
-// When the user clicks anywhere outside of the modals, close them
-window.onclick = function (event) {
-  if (event.target == addUserModal || event.target == updateUserModal) {
-    addUserModal.style.display = "none";
-    updateUserModal.style.display = "none";
-  }
-};
+if (addIngredientForm) {
+  addIngredientForm.addEventListener('submit', (event) => {
+    event.preventDefault(); // Prevent the form from submitting normally
 
-// Loop through the edit buttons and add a click event listener to each
-for (var i = 0; i < editButtons.length; i++) {
-  editButtons[i].addEventListener("click", function () {
-    var userId = this.getAttribute("data-userid");
-    openUpdateUserModal(userId);
+    // Extract the form data
+    const name = document.getElementById('ingredient-name').value;
+    const category = document.getElementById('ingredient-category').value;
+
+    // Create a data object to send in the request body
+    var data = { name: name, category: category };
+    console.log('Name:', name);
+    console.log('Category:', category);
+
+    // Send an AJAX POST request to create the ingredient
+    fetch('/ingredients/create', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error('An error occurred while creating the ingredient. Try again.');
+        }
+      })
+      .then((data) => {
+        if (data.success) {
+          location.reload(); // Reload the page to show the updated ingredients
+        } else {
+          alert('Failed to create ingredient: ' + data.message);
+        }
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
   });
 }
+
+/************************************************************************************************************************ */
+
+// Get all edit buttons
+const editButtons = document.querySelectorAll(".edit-button");
+
+// Loop through the edit buttons and add a click event listener to each
+for (let i = 0; i < editButtons.length; i++) {
+  editButtons[i].addEventListener("click", function () {
+    var ingredientId = this.getAttribute("data-ingredientid");
+    var ingredientName = document.getElementById("ingredient-name-" + ingredientId).textContent;
+    var ingredientCategory = document.getElementById("ingredient-category-" + ingredientId).textContent;
+
+    // Populate the update ingredient form with the current ingredient details
+    document.getElementById("update-ingredient-id").value = ingredientId;
+    document.getElementById("update-ingredient-name").value = ingredientName;
+    document.getElementById("update-ingredient-category").value = ingredientCategory;
+
+    // Show the update ingredient modal
+    document.getElementById("update-ingredient-model").style.display = "block";
+  });
+}
+
+// Handle form submission for updating an ingredient
+const updateIngredientForm = document.getElementById('update-ingredient-form');
+updateIngredientForm.addEventListener('submit', function (event) {
+  event.preventDefault();
+
+  const id = document.getElementById('update-ingredient-id').value;
+  const name = document.getElementById('update-ingredient-name').value;
+  const category = document.getElementById('update-ingredient-category').value;
+
+  var data = { id: id, name: name, category: category };
+
+  // Send an AJAX POST request to update the ingredient
+  fetch('/ingredients/update', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  })
+  .then((response) => response.json())
+  .then((data) => {
+    if (data.success) {
+      location.reload(); // Reload the page to show the updated ingredients
+    } else {
+      alert('Failed to update ingredient: ' + data.message);
+    }
+  })
+  .catch((error) => {
+    alert('Failed to update ingredient: ' + error.message);
+  });
+});
+
+// Get all delete buttons
+const deleteButtons = document.querySelectorAll(".del-button");
 
 // Loop through the delete buttons and add a click event listener to each
 for (var i = 0; i < deleteButtons.length; i++) {
   deleteButtons[i].addEventListener("click", function () {
-    var userId = this.getAttribute("data-userid");
-    deleteUser(userId);
+    var ingredientId = this.getAttribute("data-ingredientid");
+
+    if(confirm('Are you sure you want to delete this ingredient?')) {
+      // Send an AJAX POST request to delete the ingredient
+      fetch('/ingredients/delete', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ id: ingredientId }),
+      })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          location.reload(); // Reload the page to show the updated ingredients
+        } else {
+          alert('Failed to delete ingredient: ' + data.message);
+        }
+      })
+      .catch((error) => {
+        alert('Failed to delete ingredient: ' + error.message);
+      });
+    }
   });
-}
-
-function openUpdateUserModal(userId) {
-  // Get the user data from the table
-  var username = document.getElementById("username-" + userId).innerText;
-  var email = document.getElementById("email-" + userId).innerText;
-  var password = document.getElementById("password-" + userId).innerText;
-
-  // Set the pre-filled data in the update user form
-  document.getElementById("update-user-id").value = userId;
-  document.getElementById("update-user-username").value = username; // Update this line
-  document.getElementById("update-user-email").value = email;
-  document.getElementById("update-user-password").value = password;
-
-  // Display the update user modal
-  updateUserModal.style.display = "block";
-}
-
-function deleteUser(userId) {
-  if (confirm("Are you sure you want to delete this user?")) {
-    // Create a form element
-    var form = document.createElement("form");
-    form.method = "POST";
-    form.action = "/users/delete";
-
-    // Create an input element for the user ID
-    var userIdInput = document.createElement("input");
-    userIdInput.type = "hidden";
-    userIdInput.name = "id";
-    userIdInput.value = userId;
-
-    // Append the input element to the form
-    form.appendChild(userIdInput);
-
-    // Append the form to the document and submit it
-    document.body.appendChild(form);
-    form.submit();
-  }
 }

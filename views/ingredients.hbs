@@ -1,0 +1,90 @@
+<body>
+	<header>
+		<h1>Flavorful Finds - Ingredients</h1>
+		<nav class="navpages">
+			<div class="dropdown">
+				<button class="dropbtn">
+					<div class="hamburger"></div>
+					<div class="hamburger"></div>
+					<div class="hamburger"></div>
+				</button>
+				<div class="dropdown-content">
+					<a href="/">Home</a>
+					<a href="/recipes">Recipes</a>
+					<a href="/equipments">Equipment</a>
+					<a href="/users">Users</a>
+					<a href="/ratings">Ratings</a>
+				</div>
+			</div>
+		</nav>
+	</header>
+	<section id="browse-ingredients">
+		<div class="browse-header">
+			<h2>Browse Ingredients</h2>
+			<button id="add-ingredient-button">+ Add Ingredient</button>
+		</div>
+		<!-- Search form -->
+		<form action="/ingredients/search" method="GET">
+			<input type="search" name="q" placeholder="Search for ingredients...">
+			<input type="submit" value="Search">
+		</form>
+		<table>
+			<thead>
+				<tr>
+					<th>Ingredient ID</th>
+					<th>Name</th>
+					<th>Category</th>
+				</tr>
+			</thead>
+			<tbody>
+				{{#each ingredients}}
+				<tr>
+					<td>{{this.ingredientID}}</td>
+					<td id="ingredient-name-{{this.ingredientID}}">{{this.name}}</td>
+					<td id="ingredient-category-{{this.ingredientID}}">{{this.category}}</td>
+					<td>
+						<button class="edit-button" data-ingredientid="{{this.ingredientID}}">Edit</button>
+						<button class="del-button" data-ingredientid="{{this.ingredientID}}">Delete</button>
+					</td>
+				</tr>
+				{{/each}}
+			</tbody>
+		</table>
+	</section>
+	<div id="add-ingredient-model" style="display: none;">
+		<section id="add-ingredient">
+			<h2>Add a New Ingredient</h2>
+			<form id="add-ingredient-form" action="/ingredients/create" method="POST">
+				<fieldset>
+					<label for="ingredient-name">Name</label>
+					<input type="text" id="ingredient-name" name="name">
+					<label for="ingredient-category">Category</label>
+					<input type="text" id="ingredient-category" name="category">
+					<!-- Additional fields for ingredient details -->
+				</fieldset>
+				<button type="submit">Save</button>
+				<button type="button" id="cancel-button">Cancel</button>
+			</form>
+		</section>
+	</div>
+	<div id="update-ingredient-model" style="display: none;">
+		<section id="update-ingredient">
+			<h2>Update Ingredient</h2>
+			<form id="update-ingredient-form" action="/ingredients/update" method="POST">
+				<fieldset>
+					<input type="hidden" id="update-ingredient-id" name="id">
+					<label for="update-ingredient-name">Name</label>
+					<input type="text" id="update-ingredient-name" name="name">
+					<label for="update-ingredient-category">Category</label>
+					<input type="text" id="update-ingredient-category" name="category">
+					<!-- Additional fields for ingredient details -->
+				</fieldset>
+				<button type="submit">Save</button>
+				<button type="button" id="cancel-update-button">Cancel</button>
+			</form>
+		</section>
+	</div>
+	<script src="/src/scripts.js"></script>
+</body>
+
+</html>

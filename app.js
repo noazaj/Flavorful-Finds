@@ -1,11 +1,12 @@
 // SETUP
 const express   = require('express');       // We are using the express library for the web server
 const app       = express();                // We need to instantiate an express object to interact with the server in our code
-const PORT      = 7070;                     // Set a port number at the top so it's easy to change in the future
+const PORT      = 3030;                     // Set a port number at the top so it's easy to change in the future
 
 // ROUTES
 const userRoutes = require('./server/routes/user');
 const indexRoutes = require('./server/routes/index');
+const ingredientRoutes = require('./server/routes/ingredient');
 
 // HANDLEBARS
 const exphbs = require('express-handlebars');
@@ -15,14 +16,23 @@ app.set('view engine', 'hbs');
 
 // BODY PARSING MIDDLEWARE
 app.use(bodyParser.urlencoded({extended: false}));
+app.use(express.json());
 
 // Use for page navigation, searchs, and submissions
 app.use('/', indexRoutes);
+
+// Routes for Users
 app.use('/users', userRoutes);
 app.use('/users/search', userRoutes);
 app.use('/users/create', userRoutes);
 app.use('/users/update', userRoutes);
 app.use('/users/delete', userRoutes);
+
+// Routes for Ingredients
+app.use('/ingredients', ingredientRoutes);
+app.use('/ingredients/create', ingredientRoutes);
+app.use('/ingredients/update', ingredientRoutes);
+app.use('/ingredients/delete', ingredientRoutes);
 
 
 // Use static files if not found in routes
