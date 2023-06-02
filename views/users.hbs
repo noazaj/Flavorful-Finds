@@ -36,15 +36,16 @@
           <th>Username</th>
           <th>Email</th>
           <th>Password</th>
+          <th>Options</th>
         </tr>
       </thead>
       <tbody>
         {{#each users}}
         <tr>
           <td>{{this.userID}}</td>
-          <td id="username-{{this.userID}}">{{this.username}}</td>
-          <td id="email-{{this.userID}}">{{this.email}}</td>
-          <td id="password-{{this.userID}}">{{this.password}}</td>
+          <td id="user-username-{{this.userID}}">{{this.username}}</td>
+          <td id="user-email-{{this.userID}}">{{this.email}}</td>
+          <td id="user-password-{{this.userID}}">{{this.password}}</td>
           <td>
             <button class="edit-button" data-userid="{{this.userID}}">Edit</button>
             <button class="del-button" data-userid="{{this.userID}}">Delete</button>
@@ -57,25 +58,25 @@
   <div id="add-user-model" style="display: none;">
     <section id="add-user">
       <h2>Add a New User</h2>
-      <form action="/users/create" method="POST">
+      <form id="add-user-form" action="/users/create" method="POST">
         <fieldset>
-          <label for="user-username">Username</label>
-          <input type="text" id="user-username" name="username">
-          <label for="user-email">Email</label>
-          <input type="email" id="user-email" name="email">
-          <label for="user-password">Password</label>
-          <input type="password" id="user-password" name="password">
+          <label for="add-user-username">Username</label>
+          <input type="text" id="add-user-username" name="username">
+          <label for="add-user-email">Email</label>
+          <input type="email" id="add-user-email" name="email">
+          <label for="add-user-password">Password</label>
+          <input type="password" id="add-user-password" name="password">
           <!-- Additional fields for user details -->
         </fieldset>
         <button type="submit">Save</button>
-        <button type="button" id="cancel-button">Cancel</button>
+        <button type="button" id="cancel-add-user-button">Cancel</button>
       </form>
     </section>
   </div>
   <div id="update-user-model" style="display: none;">
     <section id="update-user">
       <h2>Update User</h2>
-      <form action="/users/update" method="POST">
+      <form id="update-user-form" action="/users/update" method="POST">
         <fieldset>
           <input type="hidden" id="update-user-id" name="id">
           <label for="update-user-username">Username</label>
@@ -91,7 +92,7 @@
       </form>
     </section>
   </div>
-  <script src="/src/scripts.js"></script>
+  <script src="/src/scriptUser.js"></script>
 </body>
 
 </html>

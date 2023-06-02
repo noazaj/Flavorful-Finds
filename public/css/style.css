@@ -162,7 +162,7 @@ th {
     padding: 20px 0;  /* Adjust as needed */
   }
   
-  #add-user-button, #add-ingredient-button {
+  #add-user-button, #add-ingredient-button, #add-equipment-button {
     background-color: #2a6592; /* You can choose your preferred color */
     color: white;
     border: none;

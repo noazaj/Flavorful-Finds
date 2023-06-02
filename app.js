@@ -7,6 +7,7 @@ const PORT      = 3030;                     // Set a port number at the top so i
 const userRoutes = require('./server/routes/user');
 const indexRoutes = require('./server/routes/index');
 const ingredientRoutes = require('./server/routes/ingredient');
+const equipmentRoutes = require('./server/routes/equipment');
 
 // HANDLEBARS
 const exphbs = require('express-handlebars');
@@ -14,7 +15,7 @@ const bodyParser = require('body-parser');
 app.engine('hbs', exphbs.engine({extname: '.hbs'}));
 app.set('view engine', 'hbs');
 
-// BODY PARSING MIDDLEWARE
+// BODY PARSING and JSON MIDDLEWARE
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.json());
 
@@ -30,9 +31,18 @@ app.use('/users/delete', userRoutes);
 
 // Routes for Ingredients
 app.use('/ingredients', ingredientRoutes);
+app.use('/ingredients/search', ingredientRoutes);
 app.use('/ingredients/create', ingredientRoutes);
 app.use('/ingredients/update', ingredientRoutes);
 app.use('/ingredients/delete', ingredientRoutes);
+
+// Routes for Equipment
+app.use('/equipment', equipmentRoutes);
+app.use('/equipment/search', equipmentRoutes);
+app.use('/equipment/create', equipmentRoutes);
+app.use('/equipment/update', equipmentRoutes);
+app.use('/equipment/delete', equipmentRoutes);
+
 
 
 // Use static files if not found in routes

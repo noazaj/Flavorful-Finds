@@ -8,6 +8,9 @@ const ingredientController = require('../controllers/ingredientController');
 // GET request for read all ingredients
 router.get('/', ingredientController.read);
 
+// GET request to search Ingredients
+router.get('/search', ingredientController.search);
+
 // POST request to create Ingredient
 router.post('/create', ingredientController.create);
 

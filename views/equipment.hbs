@@ -1,0 +1,94 @@
+<body>
+	<header>
+		<h1>Flavorful Finds - Equipment</h1>
+		<nav class="navpages">
+			<div class="dropdown">
+				<button class="dropbtn">
+					<div class="hamburger"></div>
+					<div class="hamburger"></div>
+					<div class="hamburger"></div>
+				</button>
+				<div class="dropdown-content">
+					<a href="/">Home</a>
+					<a href="/recipes">Recipes</a>
+					<a href="/ingredients">Ingredients</a>
+					<a href="/users">Users</a>
+					<a href="/ratings">Ratings</a>
+				</div>
+			</div>
+		</nav>
+	</header>
+
+	<section id="browse-equipment">
+		<div class="browse-header">
+			<h2>Browse Equipment</h2>
+			<button id="add-equipment-button">+ Add Equipment</button>
+		</div>
+		<!-- Search form -->
+		<form action="/equipment/search" method="GET">
+			<input type="search" name="q" placeholder="Search for equipment...">
+			<input type="submit" value="Search">
+		</form>
+		<table>
+			<thead>
+				<tr>
+					<th>Equipment ID</th>
+					<th>Name</th>
+					<th>Description</th>
+					<th>Options</th>
+				</tr>
+			</thead>
+			<tbody>
+				{{#each equipment}}
+				<tr>
+					<td>{{this.equipmentID}}</td>
+					<td id="equipment-name-{{this.equipmentID}}">{{this.name}}</td>
+					<td id="equipment-description-{{this.equipmentID}}">{{this.description}}</td>
+					<td>
+						<button class="edit-button" data-equipmentid="{{this.equipmentID}}">Edit</button>
+						<button class="del-button" data-equipmentid="{{this.equipmentID}}">Delete</button>
+					</td>
+				</tr>
+				{{/each}}
+			</tbody>
+		</table>
+	</section>
+
+	<div id="add-equipment-model" style="display: none;">
+		<section id="add-equipment">
+			<h2>Add New Equipment</h2>
+			<form id="add-equipment-form" action="/equipment/create" method="POST">
+				<fieldset>
+					<label for="add-equipment-name">Name</label>
+					<input type="text" id="add-equipment-name" name="name" autocomplete="off">
+					<label for="add-equipment-description">Description</label>
+					<textarea id="add-equipment-description" name="description"></textarea>
+					<!-- Additional fields for equipment details -->
+				</fieldset>
+				<button type="submit">Save</button>
+				<button type="button" id="cancel-add-equipment-button">Cancel</button>
+			</form>
+		</section>
+	</div>
+
+	<div id="update-equipment-model" style="display: none;">
+		<section id="update-equipment">
+			<h2>Update Equipment</h2>
+			<form id="update-equipment-form" action="/equipment/update" method="POST">
+				<fieldset>
+					<input type="hidden" id="update-equipment-id" name="id">
+					<label for="update-equipment-name">Name</label>
+					<input type="text" id="update-equipment-name" name="name" autocomplete="off">
+					<label for="update-equipment-description">Description</label>
+					<textarea id="update-equipment-description" name="description"></textarea>
+					<!-- Additional fields for equipment details -->
+				</fieldset>
+				<button type="submit">Save</button>
+				<button type="button" id="cancel-update-button">Cancel</button>
+			</form>
+		</section>
+	</div>
+	<script src="/src/scriptEquipment.js"></script>
+</body>
+
+</html>

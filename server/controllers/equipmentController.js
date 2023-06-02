@@ -1,7 +1,7 @@
 // MySQL database connection
 const db = require('../../db-connector').pool;
 
-// Read Users
+// Read Equipment
 exports.read = (req, res) => {
 
     // Get a connection from the connection pool.
@@ -13,7 +13,7 @@ exports.read = (req, res) => {
         }
 
         // Execute a SQL query to fetch all user data.
-        connection.query('SELECT * FROM Users ', (err, results) => {
+        connection.query('SELECT * FROM Equipment ', (err, results) => {
             // Once the query is done and results returned, release 
             // the database connection
             connection.release();
@@ -23,13 +23,13 @@ exports.read = (req, res) => {
                 res.status(500).send('An error occurred');
             } else {
                 // Pass the fetched user data to the view.
-                res.render('users', { users: results });
+                res.render('equipment', { equipment: results });
             }
         });
     });
 };
 
-// Search Users
+// Search Equipment
 exports.search = (req, res) => {
 
     // Get a connection from the connection pool.
@@ -41,7 +41,7 @@ exports.search = (req, res) => {
         }
 
         // Create a SQL query to fetch user data that matches the search query.
-        const query = 'SELECT * FROM Users WHERE name LIKE ?';
+        const query = 'SELECT * FROM Equipment WHERE name LIKE ?';
         const queryData = ['%' + req.query.q + '%'];
 
         connection.query(query, queryData, (err, results) => {
@@ -54,15 +54,15 @@ exports.search = (req, res) => {
                 res.status(500).send('An error occurred');
             } else {
                 // Pass the fetched user data to the view.
-                res.render('users', { users: results });
+                res.render('equipment', { equipment: results });
             }
         });
     });
 };
 
-// Create User
+// Create Equipment
 exports.create = (req, res) => {
-    const { username, email, password } = req.body; // extract user details from request body
+    const { name, description } = req.body; // extract equipment details from request body
   
     db.getConnection((err, connection) => {
       	if (err) {
@@ -71,23 +71,23 @@ exports.create = (req, res) => {
         	return;
       	}
   
-      	connection.query('INSERT INTO Users (username, email, password) VALUES (?, ?, ?)',
-        	[username, email, password], (err, results) => {
+      	connection.query('INSERT INTO Equipment (name, description) VALUES (?, ?)',
+        	[name, description], (err, results) => {
           		connection.release();
   
           		if (err) {
             		console.error('An error occurred while executing the query', err);
-            		res.status(500).json({ success: false, message: 'An error occurred while creating the user.' });
+            		res.status(500).json({ success: false, message: 'An error occurred while creating the equipment.' });
           		} else {
-            		res.status(200).json({ success: true, message: 'User successfully created!' });
+            		res.status(200).json({ success: true, message: 'Equipment successfully created!' });
           	}
         });
     });
 };
 
-// Update User
+// Update Equipment
 exports.update = (req, res) => {
-    const { id, username, email, password } = req.body;
+    const { id, name, description } = req.body;
 
     db.getConnection((err, connection) => {
         if (err) {
@@ -96,21 +96,21 @@ exports.update = (req, res) => {
             return;
         }
 
-        connection.query('UPDATE Users SET username = ?, email = ?, password = ? WHERE userID = ?',
-            [username, email, password, id], (err, results) => {
+        connection.query('UPDATE Equipment SET name = ?, description = ? WHERE equipmentID = ?',
+            [name, description, id], (err, results) => {
                 connection.release();
 
                 if (err) {
                     console.error('An error occurred while executing the query', err);
-                    res.status(500).json({ success: false, message: 'An error occurred while updating the user.' });
+                    res.status(500).json({ success: false, message: 'An error occurred while updating the equipment.' });
                 } else {
-                    res.status(200).json({ success: true, message: 'User successfully updated!' });
+                    res.status(200).json({ success: true, message: 'Equipment successfully updated!' });
             }
         });
     });
 };
 
-// Delete User
+// Delete Equipment
 exports.delete = (req, res) => {
     const id = req.body.id;
 
@@ -121,15 +121,15 @@ exports.delete = (req, res) => {
             return;
         }
 
-        connection.query('DELETE FROM Users WHERE userID = ?',
+        connection.query('DELETE FROM Equipment WHERE equipmentID = ?',
             [id], (err, results) => {
                 connection.release();
 
                 if (err) {
                     console.error('An error occurred while executing the query', err);
-                    res.status(500).json({ success: false, message: 'An error occurred while deleting the user.' });
+                    res.status(500).json({ success: false, message: 'An error occurred while deleting the equipment.' });
                 } else {
-                    res.status(200).json({ success: true, message: 'User successfully deleted!' });
+                    res.status(200).json({ success: true, message: 'Equipment successfully deleted!' });
             }
         });
     });
