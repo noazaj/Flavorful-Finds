@@ -8,6 +8,7 @@ const userRoutes = require('./server/routes/user');
 const indexRoutes = require('./server/routes/index');
 const ingredientRoutes = require('./server/routes/ingredient');
 const equipmentRoutes = require('./server/routes/equipment');
+const recipeRoutes = require('./server/routes/recipe');
 
 // HANDLEBARS
 const exphbs = require('express-handlebars');
@@ -21,6 +22,9 @@ app.use(express.json());
 
 // Use for page navigation, searchs, and submissions
 app.use('/', indexRoutes);
+
+// Routes for Recipes
+app.use('/recipes', recipeRoutes);
 
 // Routes for Users
 app.use('/users', userRoutes);
