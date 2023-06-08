@@ -1,0 +1,124 @@
+<body>
+	<header>
+		<h1>Flavorful Finds - Recipes</h1>
+		<nav class="navpages">
+			<div class="dropdown">
+				<button class="dropbtn">
+					<div class="hamburger"></div>
+					<div class="hamburger"></div>
+					<div class="hamburger"></div>
+				</button>
+				<div class="dropdown-content">
+					<a href="/">Home</a>
+					<a href="/ingredients">Ingredients</a>
+					<a href="/equipment">Equipment</a>
+					<a href="/users">Users</a>
+					<a href="/ratings">Ratings</a>
+				</div>
+			</div>
+		</nav>
+	</header>
+	<section id="browse-recipes">
+		<div class="browse-header">
+			<h2>Browse Recipes</h2>
+			<button id="add-recipe-button">+ Add Recipe</button>
+		</div>
+		<!-- Search form -->
+		<form action="/recipes/search" method="GET">
+			<input type="search" name="q" placeholder="Search for recipes...">
+			<input type="submit" value="Search">
+		</form>
+		<!-- User list table goes here -->
+		<table>
+			<thead>
+				<tr>
+					<th>Recipe ID</th>
+					<th>Title</th>
+					<th>Description</th>
+					<th>Dietary Restriction</th>
+					<th>Instructions</th>
+					<th>Prep Time Min.</th>
+					<th>Cook Time Min.</th>
+					<th>Serving</th>
+					<th>User ID</th>
+					<th>Options</th>
+				</tr>
+			</thead>
+			<tbody>
+				{{#each recipes}}
+				<tr>
+					<td>{{this.recipeID}}</td>
+					<td id="recipe-title-{{this.recipeID}}">{{this.title}}</td>
+					<td id="recipe-description-{{this.recipeID}}">{{this.description}}</td>
+					<td id="recipe-dietary_restriction-{{this.recipeID}}">{{this.dietary_restriction}}</td>
+					<td id="recipe-instruction-{{this.recipeID}}">{{this.instruction}}</td>
+					<td id="recipe-prep_time-{{this.recipeID}}">{{this.prep_time}}</td>
+					<td id="recipe-cook_time-{{this.recipeID}}">{{this.cook_time}}</td>
+					<td id="recipe-serving-{{this.recipeID}}">{{this.serving}}</td>
+					<td id="recipe-userID-{{this.recipeID}}">{{this.userID}}</td>
+					<td>
+						<button class="edit-button" data-userid="{{this.recipeID}}">Edit</button>
+						<button class="del-button" data-userid="{{this.recipeID}}">Delete</button>
+					</td>
+				</tr>
+				{{/each}}
+			</tbody>
+		</table>
+	</section>
+	<div id="add-recipe-model" style="display: none;">
+		<section id="add-recipe">
+			<h2>Add a New Recipe</h2>
+			<form id="add-recipe-form" action="/recipes/create" method="POST">
+				<fieldset>
+					<label for="add-recipe-title">Title</label>
+					<input type="text" id="add-recipe-title" name="title" required>
+					<label for="add-recipe-description">Description</label>
+					<textarea id="add-recipe-description" name="description" required></textarea>
+					<label for="add-recipe-dietary_restriction">Dietary Restriction</label>
+					<textarea id="add-recipe-dietary_restriction" name="dietary_restriction"></textarea>
+					<label for="add-recipe-instruction">Instruction</label>
+					<textarea id="add-recipe-instruction" name="instruction" required></textarea>
+					<label for="add-recipe-prep_time">Preparation Time</label>
+					<input type="number" id="add-recipe-prep_time" name="prep_time" required>
+					<label for="add-recipe-cook_time">Cook Time</label>
+					<input type="number" id="add-recipe-cook_time" name="cook_time" required>
+					<label for="add-recipe-serving">Serving</label>
+					<input type="number" id="add-recipe-serving" name="serving">
+					<!-- Additional fields for user details -->
+				</fieldset>
+				<button type="submit">Save</button>
+				<button type="button" id="cancel-add-recipe-button">Cancel</button>
+			</form>
+		</section>
+	</div>
+	<div id="update-recipe-model" style="display: none;">
+		<section id="update-recipe">
+			<h2>Update User</h2>
+			<form id="update-recipe-form" action="/recipes/update" method="POST">
+				<fieldset>
+					<input type="hidden" id="update-recipe-id" name="recipeID">
+					<label for="update-recipe-title">Title</label>
+					<input type="text" id="update-recipe-title" name="title">
+					<label for="update-recipe-description">Description</label>
+					<textarea id="update-recipe-description" name="description"></textarea>
+					<label for="update-recipe-dietary_restriction">Dietary Restriction</label>
+					<textarea id="update-recipe-dietary_restriction" name="dietary_restriction"></textarea>
+					<label for="update-recipe-instruction">Instruction</label>
+					<textarea id="update-recipe-instruction" name="instruction"></textarea>
+					<label for="update-recipe-prep_time">Preparation Time</label>
+					<input type="number" id="update-recipe-prep_time" name="prep_time">
+					<label for="update-recipe-cook_time">Cook Time</label>
+					<input type="number" id="update-recipe-cook_time" name="cook_time">
+					<label for="update-recipe-serving">Serving</label>
+					<input type="number" id="update-recipe-serving" name="serving">
+					<!-- Additional fields for user details -->
+				</fieldset>
+				<button type="submit">Save</button>
+				<button type="button" id="cancel-update-button">Cancel</button>
+			</form>
+		</section>
+	</div>
+	<script src="/src/scriptRecipe.js"></script>
+</body>
+
+</html>
