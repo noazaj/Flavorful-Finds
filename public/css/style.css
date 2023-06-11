@@ -162,8 +162,8 @@ th {
     padding: 20px 0;  /* Adjust as needed */
   }
   
-  #add-user-button, #add-ingredient-button, #add-equipment-button, #add-recipe-button {
-    background-color: #2a6592; /* You can choose your preferred color */
+  #add-user-button, #add-ingredient-button, #add-equipment-button, #add-recipe-button, #add-rating-button {
+    background-color: #2a6592; 
     color: white;
     border: none;
     border-radius: 15px;

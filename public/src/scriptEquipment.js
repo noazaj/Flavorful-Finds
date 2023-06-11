@@ -82,7 +82,7 @@ for (let i = 0; i < editButtons.length; i++) {
 	});
 }
 
-// Handle form submission for updating an ingredient
+// Handle form submission for updating an equipment
 const updateEquipmentForm = document.getElementById('update-equipment-form');
 updateEquipmentForm.addEventListener('submit', function (event) {
 	event.preventDefault();

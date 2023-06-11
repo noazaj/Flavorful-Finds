@@ -25,6 +25,10 @@ app.use('/', indexRoutes);
 
 // Routes for Recipes
 app.use('/recipes', recipeRoutes);
+app.use('/recipes/search', recipeRoutes);
+app.use('/recipes/create', recipeRoutes);
+app.use('/recipes/update', recipeRoutes);
+app.use('/recipes/delete', recipeRoutes);
 
 // Routes for Users
 app.use('/users', userRoutes);

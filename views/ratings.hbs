@@ -1,0 +1,104 @@
+<body>
+	<header>
+		<h1>Flavorful Finds - Ratings</h1>
+		<nav class="navpages">
+			<div class="dropdown">
+				<button class="dropbtn">
+					<div class="hamburger"></div>
+					<div class="hamburger"></div>
+					<div class="hamburger"></div>
+				</button>
+				<div class="dropdown-content">
+					<a href="/">Home</a>
+          			<a href="/recipes">Recipes</a>
+					<a href="/ingredients">Ingredients</a>
+					<a href="/equipment">Equipment</a>
+					<a href="/users">Users</a>
+				</div>
+			</div>
+		</nav>
+	</header>
+	<section id="browse-ratings">
+		<div class="browse-header">
+			<h2>Browse Ratings</h2>
+			<button id="add-rating-button">+ Add Recipe</button>
+		</div>
+		<!-- Search form -->
+		<form action="/ratings/search" method="GET">
+			<input type="search" name="q" placeholder="Search for ratings...">
+			<input type="submit" value="Search">
+		</form>
+		<!-- User list table goes here -->
+		<table>
+			<thead>
+				<tr>
+					<th>Rating ID</th>
+					<th>Rating</th>
+					<th>Review</th>
+					<th>User ID</th>
+					<th>Recipe ID</th>
+					<th>Options</th>
+				</tr>
+			</thead>
+			<tbody>
+				{{#each ratings}}
+				<tr>
+					<td>{{this.ratingID}}</td>
+					<td id="rating-rating-{{this.ratingID}}">{{this.rating}}</td>
+					<td id="recipe-review-{{this.ratingID}}">{{this.review}}</td>
+					<td id="recipe-userID-{{this.ratingID}}">{{this.userID}}</td>
+					<td id="recipe-recipeID-{{this.ratingID}}">{{this.recipeID}}</td>
+					<td>
+						<button class="edit-button" data-userid="{{this.recipeID}}">Edit</button>
+						<button class="del-button" data-userid="{{this.recipeID}}">Delete</button>
+					</td>
+				</tr>
+				{{/each}}
+			</tbody>
+		</table>
+	</section>
+	<div id="add-rating-model" style="display: none;">
+	<section id="add-rating">
+		<h2>Add a New Rating</h2>
+		<form id="add-rating-form" action="/ratings/create" method="POST">
+			<fieldset>
+				<label for="add-rating-rating">Rating</label>
+				<input type="number" id="add-rating-rating" name="rating" required>
+				<label for="add-rating-review">Review</label>
+				<textarea id="add-rating-review" name="review"></textarea>
+				<label for="add-rating-userID">User ID</label>
+				<input type="number" id="add-rating-userID" name="userID" required>
+				<label for="add-rating-recipeID">Recipe ID</label>
+				<input type="number" id="add-rating-recipeID" name="recipeID" required>
+			</fieldset>
+			<button type="submit">Save</button>
+			<button type="button" id="cancel-add-rating-button">Cancel</button>
+		</form>
+	</section>
+</div>
+
+	<div id="update-rating-model" style="display: none;">
+	<section id="update-rating">
+		<h2>Update Rating</h2>
+		<form id="update-rating-form" action="/ratings/update" method="POST">
+			<fieldset>
+				<input type="hidden" id="update-rating-id" name="ratingID">
+				<label for="update-rating-rating">Rating</label>
+				<input type="number" id="update-rating-rating" name="rating">
+				<label for="update-rating-review">Review</label>
+				<textarea id="update-rating-review" name="review"></textarea>
+				<label for="update-rating-userID">User ID</label>
+				<input type="number" id="update-rating-userID" name="userID">
+				<label for="update-rating-recipeID">Recipe ID</label>
+				<input type="number" id="update-rating-recipeID" name="recipeID">
+			</fieldset>
+			<button type="submit">Save</button>
+			<button type="button" id="cancel-update-button">Cancel</button>
+		</form>
+	</section>
+</div>
+
+	<script src="/src/scriptRating.js"></script>
+</body>
+
+</html>
