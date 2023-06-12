@@ -5,7 +5,7 @@ const recipeController = require('../controllers/recipeController');
 
 // create, read, update, delete routes for a recipe item
 
-// GET request for read all ingredients
+// GET request for read all Recipes
 router.get('/', recipeController.read);
 
 // GET request to search Recipes

@@ -9,6 +9,7 @@ const indexRoutes = require('./server/routes/index');
 const ingredientRoutes = require('./server/routes/ingredient');
 const equipmentRoutes = require('./server/routes/equipment');
 const recipeRoutes = require('./server/routes/recipe');
+const ratingRoutes = require('./server/routes/rating');
 
 // HANDLEBARS
 const exphbs = require('express-handlebars');
@@ -50,6 +51,13 @@ app.use('/equipment/search', equipmentRoutes);
 app.use('/equipment/create', equipmentRoutes);
 app.use('/equipment/update', equipmentRoutes);
 app.use('/equipment/delete', equipmentRoutes);
+
+// Routes for Ratings
+app.use('/ratings', ratingRoutes);
+app.use('/ratings/search', ratingRoutes);
+app.use('/ratings/create', ratingRoutes);
+app.use('/equipment/update', ratingRoutes);
+app.use('/equipment/delete', ratingRoutes);
 
 
 

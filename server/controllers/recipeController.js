@@ -101,6 +101,7 @@ exports.create = (req, res) => {
     });
 };
 
+// Update Recipe
 exports.update = (req, res) => {
     const { recipeID, title, description, dietary_restriction, instruction, prep_time, cook_time, serving, userID } = req.body;
 
