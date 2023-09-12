@@ -11,26 +11,26 @@
 ## Installation
 
 1. Clone the repository:
-\```
+```bash
 git clone https://github.com/zajicekn/Flavor-Finds.git
-\```
+```
 
 2. Navigate to the project directory:
-\```
+```bash
 cd Flavor-Finds
-\```
+```
 
 3. Install the necessary dependencies:
-\```
+```bash
 npm install
-\```
+```
 
 ## Usage
 
 To run the application, use:
-\```
+```bash
 node app.js
-\```
+```
 
 ## Features
 
